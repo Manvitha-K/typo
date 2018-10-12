@@ -21,11 +21,15 @@ describe Admin::CategoriesController do
       get :edit, :id => Factory(:category).id
     end
     
-    it 'should edit Existing Category' do
-      post :new, :category => {:name => 'Entertainment', :keywords => 'Music', :permalink => 'Music_permalink', :description => 'Music_description'}
-      assert_not_nil Category.find(test_id)
+   
+    
+    it 'should edit an existing category' do
+      post :edit, :category => {:name => 'Entertainment', :keywords => 'Music', :permalink => 'Music_permalink', :description => 'Music_description'}
+      assert_response :redirect, :action => 'index'
+      expect(response).to redirect_to('/admin/categories/new')
       expect(flash[:notice]).to eq("Category was successfully saved.")
-    end  
+    end
+    
     
     
     it 'should add new category' do
