@@ -20,7 +20,7 @@ describe Admin::CategoriesController do
     before(:each) do
       get :edit, :id => Factory(:category).id
     end
-    
+  
    
     
     it 'should edit an existing category' do
@@ -30,6 +30,7 @@ describe Admin::CategoriesController do
       expect(flash[:notice]).to eq("Category was successfully saved.")
     end
     
+
     
     
     it 'should add new category' do
